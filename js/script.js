@@ -92,6 +92,7 @@ function addNewTask() {
   list.push(t);
   addTask(t);
   updateCount();
+  showAll(document.getElementById("showAll"));
 }
 
 function updateCount() {

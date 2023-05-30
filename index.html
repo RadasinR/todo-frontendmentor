@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+    <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+    <link rel="stylesheet" href="css/style.css">
+    <script defer src="js/script.js"></script>
+    <title>Frontend Mentor | Todo app</title>
+  </head>
+  <body>
+    <article class="todo">
+      <section class="todo__ui flow">
+        <section class="todo__header flex">
+          <h2 class="list__title">Todo</h2>
+          <label for="themeSwitch" class="sr-only">Switch theme button</label>
+          <button class="btn btn-theme" id="switchTheme" onclick="switchTheme()"></button>
+        </section>
+        <section class="task__box bg-task round-corners flex">
+          <label for="addTask" class="sr-only">Add a new task</label>
+          <button id="addTask" class="btn btn-circle" onclick="addNewTask()"></button>
+          <input id="inputTask" class="task__input" type="text" placeholder="Create a new todo..." onfocus="onTextInput()" onfocusout="restore()">
+        </section>
+        <section class="todo__list bg-task round-corners">
+          <ul id="tasksList" class="tasks__ul" >
+
+          </ul>
+          <div class=" task__box info__bar flex">
+            <p><span id="itemsLeft">0</span> items left</p>
+            <div class="show__tasks task__box bg-task flex round-corners fw-700">
+              <button class="btn btn-show btn-active" onclick="showAll(this)">All</button>
+              <button class="btn btn-show" onclick="showActiveCompleted(this, false)">Active</button>
+              <button class="btn btn-show" onclick="showActiveCompleted(this, true)">Completed</button>
+            </div>
+            <button class="btn btn-clear" onclick="clearDone()">Clear Completed</button>
+          </div>
+        </section>
+        <section class="todo__footer">
+          <p class="">Drag and drop to reorder list</p>
+        </section>
+      </section>
+    </article>
+
+    <!--Code block for cloning  -->
+    <li id="strain" class="task__box flex hidden" draggable="true" ondrag="drag(this)" ondragend="drop(this)">
+      <button class="btn btn-circle" onclick="markDone(this)"><span class=sr-only>Mark task as done.</span><img src=""></button>
+      <p class="task">Learn to make websites</p>
+      <button class="btn btn-remove" onclick="removeTask(this)"><span class="sr-only">Cancel task.</span></button>
+    </li>
+
+  </body>
+</html>

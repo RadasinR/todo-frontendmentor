@@ -1,0 +1,366 @@
+@import url("https://fonts.googleapis.com/css2?family=League+Spartan:wght@700&display=swap");
+
+/* RESET */
+*,
+::after,
+::before {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  line-height: 1.5;
+  scroll-behavior: smooth;
+}
+
+picture,
+img,
+svg {
+  max-width: 100%;
+  display: block;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+/* END RESET */
+
+/* CUSTOM PROPERTIES */
+:root {
+  /* Typography */
+--fs: 1rem;
+--fs-title: 2rem;
+--ff: "Josefina Sans", sans-serif;
+--fw-700: 700;
+  /* End typography */
+--bg-dark-mobile: --bg-dark-desktop:
+}
+/* END CUSTOM PROPERTIES */
+
+/* GENERAL STYLE */
+.dark-theme {
+--clr-title: 0 0% 98%;
+--clr-task-bg: 235 24% 19%;
+--clr-text: 234 39% 85%;
+--clr-text-300: 236 14% 35%;
+--clr-text-100: 233 33% 92%;
+/* checkmark color*/
+--clr-from: 192 100% 67%;
+--clr-to: 280 87% 65%;
+--checkmark-bg: linear-gradient(hsl(var(--clr-from)), hsl(var(--clr-to)));
+
+--clr-btn: 237 14% 26%;
+--clr-active-btn: 230 60% 55%;
+--clr-bg: 235 21% 11%;
+--clr-border: 236 14% 33%;
+
+--clr-caret: 230 60% 55%;
+
+/* End  colors */
+
+/* bg images */
+--bg-mobile: url("/images/bg-mobile-dark.jpg");
+--bg-desktop: url("/images/bg-desktop-dark.jpg");
+--img-btn-theme: url('/images/icon-sun.svg');
+
+}
+
+.light-theme {
+   /* Colors */
+--clr-title: 0 0% 98%;
+--clr-task-bg: 0 0% 98%;
+--clr-text: 235 19% 35%;
+--clr-text-300: 236 9% 61%;
+--clr-text-100: 223 11% 84%;
+/* checkmark color*/
+--clr-from: 192 100% 67%;
+--clr-to: 280 87% 65%;
+--checkmark-bg: linear-gradient(hsl(var(--clr-from)), hsl(var(--clr-to)));
+
+--clr-btn: 236 11% 84%;
+--clr-active-btn: 220 98% 61%;
+--clr-bg: 223 11% 94%;
+--clr-border: 223 11% 84%;
+
+--clr-caret: 220 98% 61%;
+/* End  colors */
+
+/* bg images */
+--bg-mobile: url("/images/bg-mobile-light.jpg");
+--bg-desktop: url("/images/bg-desktop-light.jpg");
+--img-btn-theme: url('/images/icon-moon.svg');
+}
+
+/* END GENERAL STYLE */
+
+/* BLOCKS */
+.todo {
+  min-height: 100vh;
+  background-color: hsl(var(--clr-bg));
+  background-image: var(--bg-mobile);
+  background-size: 100% clamp(250px,20vw ,350px);
+  background-repeat: no-repeat;
+  padding-top: clamp(2.5em, 15vw, 5em);
+  font-family: var(--ff);
+  font-size: var(--fs);
+  color: hsl(var(--clr-text));
+
+}
+
+.todo__ui {
+  --spacing: 1.5rem;
+  width: 90%;
+  max-width: 600px;
+  margin-inline: auto;
+}
+
+.todo__list {
+  box-shadow: 0px 10px 20px hsl(0 0% 5% / 0.1);
+}
+
+/* END BLOCKS */
+
+/* ELEMENTS */
+.todo__header {
+  justify-content: space-between;
+  margin-bottom: 2rem;
+}
+
+.list__title {
+  color: hsl(var(--clr-title));
+  text-transform: uppercase;
+  letter-spacing: 3.4px;
+  font-size: var(--fs-title);
+}
+
+
+.task__box {
+  --GAP: 0.8rem;
+  padding:  1em 1.3em;
+  align-content: center;
+}
+
+.tasks__ul {
+  list-style: none;
+}
+
+.tasks__ul  .task__box {
+  border-bottom: 1px solid hsl(var(--clr-border) / 0.7);
+  background-color: hsl(var(--clr-task-bg));
+
+}
+
+.task__box.dragging {
+  filter: blur(2px);
+}
+
+.info__bar {
+  position: relative;
+  justify-content: space-between;
+  color: hsl(var(--clr-text-300));
+}
+.show__tasks {
+  --GAP: 1.5rem;
+  position: absolute;
+  width: 100%;
+  left: 0;
+  bottom: -5rem;
+  justify-content: center;
+  box-shadow: 0px 10px 20px hsl(0 0% 5% / 0.1);
+
+}
+
+.todo__footer {
+  position: relative;
+  bottom: -6rem;
+  text-align: center;
+  color: hsl(var(--clr-text-300))
+}
+
+.task__input {
+  border: none;
+  color: hsl(var(--clr-text));
+  background: transparent;
+  caret-color: hsl(var(--clr-caret));
+}
+
+.input__active {
+  font-weight: 700;
+}
+.input__active::placeholder {
+  color: hsl(var(--clr-text));
+  opacity: 1;
+}
+.task__input:focus-visible {
+  outline: none;
+  border: none;
+}
+
+.task:hover {
+  cursor: pointer;
+}
+
+.btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: inherit;
+  font-weight: 700;
+}
+
+.btn-theme {
+  width: var(--fs-title);
+  background-image: var(--img-btn-theme);
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.btn-circle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: calc(var(--fs) * 1.5);
+  height: calc(var(--fs) * 1.5);
+  border-radius: 50%;
+  border: 2px solid hsl(var(--clr-btn));
+  transition-property: border;
+  transition-duration: 0.3s;
+}
+.selected {
+  background-image: var(--checkmark-bg);
+  background-repeat: no-repeat;
+  background-size: cover;
+
+}
+
+
+.done {
+  color: hsl(var(--clr-text-300));
+  text-decoration: line-through;
+}
+.done:hover {
+  color: hsl(var(--clr-text-100) / .8);
+}
+.btn-circle:is(:hover) {
+  border-top-color: hsl(var(--clr-from) / 0.3);
+  border-left-color: hsl(var(--clr-to) / 0.5);
+  border-right-color:hsl(var(--clr-from) / 0.5);
+  border-bottom-color: hsl(var(--clr-to) / 0.6);
+}
+
+.selected:hover {
+  border: none;
+}
+.btn-remove {
+  width: calc(var(--fs) * 1.5);
+  height: calc(var(--fs) * 1.5);
+  margin-left: auto;
+  background-image: url("/images/icon-cross.svg");
+  background-repeat: no-repeat;
+  background-size: 70%;
+  background-position: center;
+}
+.btn-active {
+  color: hsl(var(--clr-active-btn));
+}
+
+.btn-show:hover {
+  color: hsl(var(--clr-text));
+}
+
+.btn-clear:hover {
+  color: hsl(var(--clr-text) / 0.7)
+}
+/* END ELEMENTS */
+
+/* MODIFIERS */
+.bg-task {
+  background-color: hsl(var(--clr-task-bg));
+}
+.fw-700 {
+  font-weight: 700;
+}
+/* END MODIFIERS */
+
+/* UTILITY */
+.flex {
+  display: flex;
+  gap: var(--GAP, 1rem);
+}
+.grid {
+  display: grid;
+  gap: var(--GAP, 1rem);
+}
+
+.box {
+  max-width: 75ch;
+  padding-inline: var(--PADDING, 1em);
+  margin-inline: auto;
+}
+
+.flow > * + * {
+  margin-top: var(--spacing, 1rem);
+}
+
+.round-corners {
+  border-radius: 0.3rem;
+}
+
+.sr-only {
+  clip: rect(1px, 1px, 1px, 1px);
+  clip-path: inset(50%);
+  height: 1px;
+  width: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+}
+
+.hidden {
+  display: none;
+}
+/* END UTILITY */
+
+/* MEDIA */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+@media screen and (min-width: 900px) {
+  :root {
+    --fs: 1.125rem;
+  }
+  .todo {
+    background-image: var(--bg-desktop);
+    background-size: 100% 300px;
+  }
+  .info__bar {
+    font-size: 0.9rem;
+    --GAP: 0rem;
+  }
+  .show__tasks {
+    position: static;
+    width: fit-content;
+    box-shadow: none;
+
+  }
+  .show__tasks.task__box {
+    padding: 0;
+  }
+  .todo__footer {
+    position: static;
+  }
+
+}
+/* END MEDIA */
